@@ -19,7 +19,7 @@ function forEach(array, callback) {
 function map(array, callback) {
   const newArray = [];
   for (let i = 0; i < array.length; i++) {
-    const callbackResult = callback(arr[i], i, arr);
+    const callbackResult = callback(array[i], i, array);
     newArray.push(callbackResult);
   }
   return newArray;
@@ -35,9 +35,9 @@ function filter(array, callback) {
   const newArray = [];
 
   for (let i = 0; i < array.length; i++) {
-    const callbackResult = callback(arr[i], i, arr);
+    const callbackResult = callback(array[i], i, array);
     if (callbackResult) {
-      newArray.push(arr[i]);
+      newArray.push(array[i]);
     }
   }
   return newArray;
@@ -53,11 +53,11 @@ function filter(array, callback) {
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
 */
 function reduce(array, callback, initialValue) {
-  const withInitialValue = inintialValue !== underfind;
-  let accumulator = withInitialValue ? initialValue : arr[0];
+  const withInitialValue = initialValue !== undefined;
+  let accumulator = withInitialValue ? initialValue : array[0];
 
-  for (let i = withInitialValue ? 0 : 1; i < arr.length; i++) {
-    accumulator = callback(accumulator, arr[i], i, arr);
+  for (let i = withInitialValue ? 0 : 1; i < array.length; i++) {
+    accumulator = callback(accumulator, array[i], i, array);
   }
   return accumulator;
 }
@@ -72,7 +72,7 @@ function some(array, callback) {
   let result = false;
 
   for (let i = 0; i < array.length; i++) {
-    result = callback(arr[i], i, arr);
+    result = callback(array[i], i, array);
     if (result) break;
   }
   return result;
@@ -88,7 +88,7 @@ function every(array, callback) {
   let result = false;
 
   for (let i = 0; i < array.length; i++) {
-    result = callback(arr[i], i, arr);
+    result = callback(array[i], i, array);
     if (!result) break;
   }
   return result;
